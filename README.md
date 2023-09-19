@@ -1,2 +1,2 @@
-# Word-of-The-Day
+# Word of The Day
  
