@@ -1,5 +1,5 @@
 name: wotd
-description: A new Flutter project.
+description: New words every day just for you
 publish_to: 'none'
 version: 0.1.0
 
@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:
