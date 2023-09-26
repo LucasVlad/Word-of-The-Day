@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:wotd/user_model.dart';
 import 'package:wotd/api_service.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+/*class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
   _HomeState createState() => _HomeState();
@@ -63,6 +63,86 @@ class _HomeState extends State<Home> {
               },
             ),
       backgroundColor: const Color.fromRGBO(35, 35, 35, 1),
+    );
+  }
+}*/
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: GestureDetector(
+          onTap: () {},
+          child: const Icon(
+            Icons.menu,
+          ),
+        ),
+        title: const Text('Today'),
+        centerTitle: true,
+        actions: <Widget>[
+          Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {},
+                child: const Icon(
+                  Icons.search,
+                  size: 26.0,
+                ),
+              )),
+        ],
+        backgroundColor: const Color.fromRGBO(35, 35, 35, 1),
+        elevation: 0,
+      ),
+      body: const Column(
+        children: [
+          Divider(
+            height: 2,
+            color: Color.fromRGBO(46, 46, 46, 1),
+            thickness: 1,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 20.0),
+            child: Text("defenestration"),
+          )
+        ],
+      ),
+      backgroundColor: const Color.fromRGBO(35, 35, 35, 1),
+    );
+  }
+}
+
+class DividerExample extends StatelessWidget {
+  const DividerExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Card(
+                child: SizedBox.expand(),
+              ),
+            ),
+            Divider(),
+            Expanded(
+              child: Card(
+                child: SizedBox.expand(),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
