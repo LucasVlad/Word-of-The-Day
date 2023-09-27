@@ -114,35 +114,16 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(icon: Icon(Icons.church), label: 'Test')
+      ]),
       backgroundColor: const Color.fromRGBO(35, 35, 35, 1),
     );
   }
 }
 
-class DividerExample extends StatelessWidget {
-  const DividerExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Card(
-                child: SizedBox.expand(),
-              ),
-            ),
-            Divider(),
-            Expanded(
-              child: Card(
-                child: SizedBox.expand(),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+// https://www.youtube.com/watch?v=3oE6JDuCBBo - bottom bar
