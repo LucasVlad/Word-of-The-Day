@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wotd/pages/home.dart';
+import 'package:wotd/pages/main_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -16,7 +16,7 @@ class MainApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
-      home: const Home(),
+      home: const MainPage(),
     );
   }
 }
