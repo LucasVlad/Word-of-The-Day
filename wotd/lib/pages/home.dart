@@ -83,19 +83,33 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
-          padding: const EdgeInsets.only(left: 20.0, top: 20.0),
-          child: GestureDetector(
+          padding: const EdgeInsets.only(
+              left: 20.0,
+              top: 20.0,
+              bottom:
+                  12), //i like bottom better at 10 try and get that much border around the whole thing left right bottom & top
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: const Color.fromRGBO(60, 60, 60, 0.9),
+                width: 1,
+              ),
+              color: const Color.fromRGBO(60, 60, 60, 0.9),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: GestureDetector(
               onTap: () {
-                log('button pressed');
+                log('open streak menu');
               },
-              child: Text(
+              child: const Text(
                 '🔥0',
                 style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                    background: Paint()
-                      ..color = const Color.fromRGBO(60, 60, 60, 0.9)),
-              )),
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
         ),
         title: GradientText(
           'WOTD',
