@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TestPage extends StatelessWidget {
-  const TestPage({super.key});
+class Search extends StatelessWidget {
+  const Search({super.key});
 
   @override
   Widget build(BuildContext context) {

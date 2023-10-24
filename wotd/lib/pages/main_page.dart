@@ -1,15 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wotd/pages/home.dart';
-import 'package:wotd/pages/testpage.dart';
-
-class _Stuff {
-  static int index = 0;
-
-  static const pages = [
-    Home(),
-    TestPage(),
-  ];
-}
+import 'package:wotd/pages/search.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -19,19 +10,26 @@ class MainPage extends StatefulWidget {
 }
 
 class MainPageState extends State<MainPage> {
+  int index = 0;
+
+  static const pages = [
+    Home(),
+    Search(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _Stuff.pages[_Stuff.index],
+      body: pages[index],
       bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _Stuff.index,
-          onTap: (int index) => setState(() => index = _Stuff.index),
+          currentIndex: index,
+          onTap: (int index) => setState(() => this.index = index),
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
             ),
-            BottomNavigationBarItem(icon: Icon(Icons.church), label: 'Test'),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           ]),
     );
   }

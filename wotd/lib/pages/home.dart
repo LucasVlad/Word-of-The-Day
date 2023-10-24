@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wotd/user_model.dart';
 import 'package:wotd/api_service.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 /*class Home extends StatefulWidget {
   const Home({super.key});
@@ -85,7 +86,17 @@ class _HomeState extends State<Home> {
             Icons.menu,
           ),
         ),
-        title: const Text('Today'),
+        title: GradientText(
+          'WOTD',
+          style: const TextStyle(
+            fontSize: 34.0,
+            fontWeight: FontWeight.bold,
+          ),
+          colors: const [
+            Color.fromRGBO(0, 255, 56, 1),
+            Color.fromRGBO(0, 240, 255, 1)
+          ],
+        ),
         centerTitle: true,
         actions: <Widget>[
           Padding(
