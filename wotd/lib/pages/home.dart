@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:wotd/user_model.dart';
 import 'package:wotd/api_service.dart';
@@ -80,11 +82,20 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {},
-          child: const Icon(
-            Icons.menu,
-          ),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+          child: GestureDetector(
+              onTap: () {
+                log('button pressed');
+              },
+              child: Text(
+                '🔥0',
+                style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                    background: Paint()
+                      ..color = const Color.fromRGBO(60, 60, 60, 0.9)),
+              )),
         ),
         title: GradientText(
           'WOTD',
