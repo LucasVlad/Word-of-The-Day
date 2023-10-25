@@ -145,8 +145,14 @@ class _HomeState extends State<Home> {
             thickness: 1,
           ),
           Padding(
-            padding: EdgeInsets.only(top: 20.0),
-            child: Text("defenestration"),
+            padding: EdgeInsets.only(top: 60.0),
+            child: Text(
+              "defenestration",
+              style: TextStyle(
+                fontSize: 26.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           )
         ],
       ),
