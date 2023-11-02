@@ -137,15 +137,15 @@ class _HomeState extends State<Home> {
         backgroundColor: const Color.fromRGBO(35, 35, 35, 1),
         elevation: 0,
       ),
-      body: const Column(
+      body: Column(
         children: [
-          Divider(
+          const Divider(
             height: 2,
             color: Color.fromRGBO(46, 46, 46, 1),
             thickness: 1,
           ),
-          Padding(
-            padding: EdgeInsets.only(top: 60.0),
+          const Padding(
+            padding: EdgeInsets.only(top: 120.0),
             child: Text(
               "defenestration",
               style: TextStyle(
@@ -153,7 +153,41 @@ class _HomeState extends State<Home> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-          )
+          ),
+          Padding(
+              padding: const EdgeInsets.only(left: 70, right: 70, top: 60.0),
+              child: RichText(
+                  textAlign: TextAlign.center,
+                  text: const TextSpan(
+                      style: TextStyle(
+                          fontSize: 16.0, fontStyle: FontStyle.italic),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: "noun.   ",
+                            style: TextStyle(
+                                fontSize: 16.0,
+                                color: Color.fromRGBO(64, 244, 255, 1))),
+                        TextSpan(
+                            text:
+                                " the action of throwing someone out of a window.")
+                      ]))),
+          const Padding(
+            padding: EdgeInsets.only(left: 40, right: 40, top: 60.0),
+            child: Divider(
+              color: Color.fromRGBO(255, 255, 255, 1),
+              thickness: 1,
+            ),
+          ),
+          const Padding(
+              padding: EdgeInsets.only(left: 100, right: 100, top: 60.0),
+              child: Text(
+                "I'd have to watch for defenestration of myself during the deadly duel",
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ))
         ],
       ),
       backgroundColor: const Color.fromRGBO(35, 35, 35, 1),
