@@ -83,26 +83,22 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
-          padding: const EdgeInsets.only(
-              left: 20.0,
-              top: 20.0,
-              bottom:
-                  12), //i like bottom better at 10 try and get that much border around the whole thing left right bottom & top
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
+          padding: const EdgeInsets.only(left: 12, top: 12, bottom: 12),
+          child: GestureDetector(
+            onTap: () {
+              log('open streak menu');
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: const Color.fromRGBO(60, 60, 60, 0.9),
+                  width: 1,
+                ),
                 color: const Color.fromRGBO(60, 60, 60, 0.9),
-                width: 1,
+                borderRadius: BorderRadius.circular(5),
               ),
-              color: const Color.fromRGBO(60, 60, 60, 0.9),
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: GestureDetector(
-              onTap: () {
-                log('open streak menu');
-              },
               child: const Text(
-                '🔥0',
+                " 🔥0",
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
@@ -160,7 +156,9 @@ class _HomeState extends State<Home> {
                   textAlign: TextAlign.center,
                   text: const TextSpan(
                       style: TextStyle(
-                          fontSize: 16.0, fontStyle: FontStyle.italic),
+                          fontSize: 16.0,
+                          fontStyle: FontStyle.italic,
+                          fontFamily: 'Inter'),
                       children: <TextSpan>[
                         TextSpan(
                             text: "noun.   ",
@@ -169,7 +167,7 @@ class _HomeState extends State<Home> {
                                 color: Color.fromRGBO(64, 244, 255, 1))),
                         TextSpan(
                             text:
-                                " the action of throwing someone out of a window.")
+                                "the action of throwing someone out of a window.")
                       ]))),
           const Padding(
             padding: EdgeInsets.only(left: 40, right: 40, top: 60.0),

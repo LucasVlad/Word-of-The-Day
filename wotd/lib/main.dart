@@ -14,6 +14,10 @@ class MainApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
       ),
+      theme: ThemeData(
+        fontFamily: 'Inter',
+        textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Inter'),
+      ),
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       home: const MainPage(),
