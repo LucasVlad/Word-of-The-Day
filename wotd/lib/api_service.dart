@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:http/http.dart' as http;
-import 'package:wotd/apis.dart';
+import 'package:wotd/api/apis.dart';
 import 'package:wotd/user_model.dart';
 
 class ApiService {
