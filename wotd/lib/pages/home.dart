@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:wotd/api/wordoftheday_model.dart';
-import 'package:wotd/user_model.dart';
 import 'package:wotd/api/api_service.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
