@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 List<WordOfTheDay> wordOfTheDayFromJson(String str) => List<WordOfTheDay>.from(
     json.decode(str).map((x) => WordOfTheDay.fromJson(x)));
 
@@ -35,5 +37,24 @@ class WordOfTheDay {
         "partOfSpeech": partOfSpeech,
         "definition": definition,
         "exampleSentence": exampleSentence,
+      };
+}
+
+class Definitions {
+  String partOfSpeech;
+  String definitions;
+
+  Definitions({
+    required this.partOfSpeech,
+    required this.definitions,
+  });
+
+  factory Definitions.fromJson(Map<String, dynamic> json) => Definitions(
+        partOfSpeech: json['lat'],
+        definitions: json['lng'],
+      );
+  Map<String, dynamic> toJson() => {
+        "partOfSpeech": partOfSpeech,
+        "definitions": definitions,
       };
 }
