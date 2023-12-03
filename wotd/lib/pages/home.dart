@@ -1,8 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:wotd/api/wordoftheday_model.dart';
 import 'package:wotd/user_model.dart';
-import 'package:wotd/api_service.dart';
+import 'package:wotd/api/api_service.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 /*class Home extends StatefulWidget {
@@ -78,6 +79,19 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  late List<WordOfTheDay>? _wordOfTheDay = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
+  void _getData() async {
+    _wordOfTheDay = (await WordNikAPIService().getWotd())!; // it's broken
+    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
