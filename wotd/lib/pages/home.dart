@@ -198,7 +198,37 @@ class _HomeState extends State<Home> {
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
-              ))
+              )),
+          _wordOfTheDay == null || _wordOfTheDay!.isEmpty
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : ListView.builder(
+                  itemCount: _wordOfTheDay!.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(_wordOfTheDay![index].word),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(_wordOfTheDay![index].word),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
         ],
       ),
       backgroundColor: const Color.fromRGBO(35, 35, 35, 1),
