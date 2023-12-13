@@ -21,7 +21,12 @@ class MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[index],
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: Theme(
+        data: ThemeData(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+        ),
+        child: BottomNavigationBar(
           currentIndex: index,
           onTap: (int index) => setState(() => this.index = index),
           items: const [
@@ -29,8 +34,19 @@ class MainPageState extends State<MainPage> {
               icon: Icon(Icons.home),
               label: 'Home',
             ),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-          ]),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: 'Search',
+            ),
+          ],
+          backgroundColor: const Color.fromRGBO(30, 30, 30, 1),
+          selectedItemColor: const Color.fromRGBO(210, 210, 210, 1),
+          unselectedItemColor: const Color.fromRGBO(170, 170, 170, 1),
+          selectedFontSize: 14,
+          unselectedFontSize: 14,
+          elevation: 0.0,
+        ),
+      ),
     );
   }
 }
