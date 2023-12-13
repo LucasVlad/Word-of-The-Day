@@ -1,8 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:wotd/api/wordoftheday_model.dart';
-import 'package:wotd/api/api_service.dart';
+import 'package:wotd/api/wordOfTheDay.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 /*class Home extends StatefulWidget {
@@ -78,7 +77,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late List<WordOfTheDay>? _wordOfTheDay = [];
+  WordOfTheDay? _wordOfTheDay;
 
   @override
   void initState() {
@@ -87,7 +86,7 @@ class _HomeState extends State<Home> {
   }
 
   void _getData() async {
-    _wordOfTheDay = (await WordNikAPIService().getWotd())!; // it's broken
+    _wordOfTheDay = (await WordOfTheDayService().getWotd());
     Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
   }
 
@@ -132,105 +131,125 @@ class _HomeState extends State<Home> {
           ],
         ),
         centerTitle: true,
-        actions: <Widget>[
-          Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {},
-                child: const Icon(
-                  Icons.search,
-                  size: 26.0,
-                ),
-              )),
-        ],
+
+        //add back when you actually add the cards and
+        //need to be able to switch between the list views
+        // actions: <Widget>[
+        //   Padding(
+        //       padding: const EdgeInsets.only(right: 20.0),
+        //       child: GestureDetector(
+        //         onTap: () {},
+        //         child: const Icon(
+        //           Icons.search,
+        //           size: 26.0,
+        //         ),
+        //       )),
+        // ],
         backgroundColor: const Color.fromRGBO(35, 35, 35, 1),
         elevation: 0,
       ),
-      body: Column(
-        children: [
-          const Divider(
-            height: 2,
-            color: Color.fromRGBO(46, 46, 46, 1),
-            thickness: 1,
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 120.0),
-            child: Text(
-              "defenestration",
-              style: TextStyle(
-                fontSize: 26.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Padding(
-              padding: const EdgeInsets.only(left: 70, right: 70, top: 60.0),
-              child: RichText(
-                  textAlign: TextAlign.center,
-                  text: const TextSpan(
-                      style: TextStyle(
-                          fontSize: 16.0,
-                          fontStyle: FontStyle.italic,
-                          fontFamily: 'Inter'),
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: "noun.   ",
-                            style: TextStyle(
-                                fontSize: 16.0,
-                                color: Color.fromRGBO(64, 244, 255, 1))),
-                        TextSpan(
-                            text:
-                                "the action of throwing someone out of a window.")
-                      ]))),
-          const Padding(
-            padding: EdgeInsets.only(left: 40, right: 40, top: 60.0),
-            child: Divider(
-              color: Color.fromRGBO(255, 255, 255, 1),
-              thickness: 1,
-            ),
-          ),
-          const Padding(
-              padding: EdgeInsets.only(left: 100, right: 100, top: 60.0),
-              child: Text(
-                "I'd have to watch for defenestration of myself during the deadly duel",
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
+      body: _wordOfTheDay == null
+          ? const Column(
+              children: [
+                Divider(
+                  height: 2,
+                  color: Color.fromRGBO(46, 46, 46, 1),
+                  thickness: 1,
                 ),
-                textAlign: TextAlign.center,
-              )),
-          _wordOfTheDay == null || _wordOfTheDay!.isEmpty
-              ? const Center(
+                Padding(
+                  padding: EdgeInsets.only(top: 300.0),
                   child: CircularProgressIndicator(),
                 )
-              : ListView.builder(
-                  itemCount: _wordOfTheDay!.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(_wordOfTheDay![index].word),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 20.0,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(_wordOfTheDay![index].word),
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+              ],
+            )
+          : Column(
+              children: [
+                const Divider(
+                  height: 2,
+                  color: Color.fromRGBO(46, 46, 46, 1),
+                  thickness: 1,
                 ),
-        ],
-      ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 120.0),
+                  child: Text(
+                    _wordOfTheDay!.word,
+                    style: const TextStyle(
+                      fontSize: 26.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Padding(
+                    padding:
+                        const EdgeInsets.only(left: 70, right: 70, top: 60.0),
+                    child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                            style: const TextStyle(
+                                fontSize: 16.0,
+                                fontStyle: FontStyle.italic,
+                                fontFamily: 'Inter'),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text:
+                                      "${_wordOfTheDay!.definitions![0].partOfSpeech}.   ",
+                                  style: const TextStyle(
+                                      fontSize: 16.0,
+                                      color: Color.fromRGBO(64, 244, 255, 1))),
+                              TextSpan(
+                                  text:
+                                      _wordOfTheDay!.definitions![0].definition)
+                            ]))),
+                const Padding(
+                  padding: EdgeInsets.only(left: 40, right: 40, top: 60.0),
+                  child: Divider(
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                    thickness: 1,
+                  ),
+                ),
+                Padding(
+                    padding:
+                        const EdgeInsets.only(left: 100, right: 100, top: 60.0),
+                    child: Text(
+                      _wordOfTheDay!.examples![0].example,
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    )),
+                //   _wordOfTheDay == null || _wordOfTheDay!.isEmpty
+                //       ? const Center(
+                //           child: CircularProgressIndicator(),
+                //         )
+                //       : ListView.builder(
+                //           itemCount: _wordOfTheDay!.length,
+                //           itemBuilder: (context, index) {
+                //             return Card(
+                //               child: Column(
+                //                 children: [
+                //                   Row(
+                //                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //                     children: [
+                //                       Text(_wordOfTheDay![index].word),
+                //                     ],
+                //                   ),
+                //                   const SizedBox(
+                //                     height: 20.0,
+                //                   ),
+                //                   Row(
+                //                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //                     children: [
+                //                       Text(_wordOfTheDay![index].word),
+                //                     ],
+                //                   ),
+                //                 ],
+                //               ),
+                //             );
+                //           },
+                //         ),
+              ],
+            ),
       backgroundColor: const Color.fromRGBO(35, 35, 35, 1),
     );
   }
