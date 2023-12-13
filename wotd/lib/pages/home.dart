@@ -68,6 +68,7 @@ class _HomeState extends State<Home> {
     );
   }
 }*/
+WordOfTheDay? _wordOfTheDay;
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -77,8 +78,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  WordOfTheDay? _wordOfTheDay;
-
   @override
   void initState() {
     super.initState();
@@ -86,8 +85,11 @@ class _HomeState extends State<Home> {
   }
 
   void _getData() async {
-    _wordOfTheDay = (await WordOfTheDayService().getWotd());
-    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+    if (_wordOfTheDay == null) {
+      _wordOfTheDay = (await WordOfTheDayService().getWotd());
+      Future.delayed(const Duration(seconds: 1))
+          .then((value) => setState(() {}));
+    }
   }
 
   @override
@@ -209,7 +211,7 @@ class _HomeState extends State<Home> {
                 ),
                 Padding(
                     padding:
-                        const EdgeInsets.only(left: 100, right: 100, top: 60.0),
+                        const EdgeInsets.only(left: 70, right: 70, top: 60.0),
                     child: Text(
                       _wordOfTheDay!.examples![0].example,
                       style: const TextStyle(
